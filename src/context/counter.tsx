@@ -12,7 +12,7 @@ const initialState = {
     error: ''
 };
 
-export const counterReducer = (state: any, action: any) => {
+const counterReducer = (state: any, action: any) => {
     console.log(action);
     console.log(state);
     
