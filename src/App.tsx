@@ -11,52 +11,52 @@ import Counter from './components/Counter';
 import ProductList from './components/ProductList';
 
 function App() {
-  const carsConfigData = [
-    {
-      lable: "Name",
-      key: "name",
-      render: (item: any) => <span className='uppercase text-red-500 text-center'>{item.name}</span>,
-      header: (item: any) => <span className='text-green-500'>{item.lable}</span>
-    },
-    {
-      lable: "Price",
-      key: "price",
-      render: (item: any) => <span>{item.price}</span>
-    }
-  ]
-  const [cars, setCars] = useState<ICar[]>([]);
-  const [isLoading,setIsLoading] = useState<boolean>(false);
-  const [isLoadingAdd,setIsLoadingAdd] = useState<boolean>(false);
-  const [error, serError] = useState<null>(null)
-  const addCar = async (car: ICar) => {
-    setIsLoadingAdd(true)
-    try {
-      await pause(1000)
-      setCars([...cars, car])
-      setIsLoadingAdd(true)
-    } catch (error) {
-      console.log(error);
-      setIsLoadingAdd(false)
+  // const carsConfigData = [
+  //   {
+  //     lable: "Name",
+  //     key: "name",
+  //     render: (item: any) => <span className='uppercase text-red-500 text-center'>{item.name}</span>,
+  //     header: (item: any) => <span className='text-green-500'>{item.lable}</span>
+  //   },
+  //   {
+  //     lable: "Price",
+  //     key: "price",
+  //     render: (item: any) => <span>{item.price}</span>
+  //   }
+  // ]
+  // const [cars, setCars] = useState<ICar[]>([]);
+  // const [isLoading,setIsLoading] = useState<boolean>(false);
+  // const [isLoadingAdd,setIsLoadingAdd] = useState<boolean>(false);
+  // const [error, serError] = useState<null>(null)
+  // const addCar = async (car: ICar) => {
+  //   setIsLoadingAdd(true)
+  //   try {
+  //     await pause(1000)
+  //     setCars([...cars, car])
+  //     setIsLoadingAdd(true)
+  //   } catch (error) {
+  //     console.log(error);
+  //     setIsLoadingAdd(false)
       
-    }
-  };
-  const removeCar = (car: ICar) => {
-    setCars(cars.filter((item) => item.id !== car.id));  }
+  //   }
+  // };
+  // const removeCar = (car: ICar) => {
+  //   setCars(cars.filter((item) => item.id !== car.id));  }
   // const update = (car: ICar) => {};
   // const fetchCar = () => {};
-  useEffect(() => {
-    (async() => {
-      setIsLoading(true)
-      try {
-        await pause(1000);
-        setCars(await instance.get('/cars'))
-        setIsLoading(false)        
-      } catch (error: any) {
-        serError(error.message)
-      setIsLoading(false)
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async() => {
+  //     setIsLoading(true)
+  //     try {
+  //       await pause(1000);
+  //       setCars(await instance.get('/cars'))
+  //       setIsLoading(false)        
+  //     } catch (error: any) {
+  //       serError(error.message)
+  //     setIsLoading(false)
+  //     }
+  //   })()
+  // }, [])
   return (
     <div>
       {/* <div className='w-96 mx-auto border'> 
@@ -66,7 +66,7 @@ function App() {
         <h2>Table components</h2>
         <Table data={carData} config={carsConfigData} />
       </div> */}
-      <Counter />
+      {/* <Counter /> */}
       <ProductList />
     </div>
   )

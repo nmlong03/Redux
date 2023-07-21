@@ -1,6 +1,8 @@
 import { instance } from "@/axios/config";
+import { productReducer } from "@/reducers/productReducer";
 import { pause } from "@/utils/pause";
-import { createContext, useState } from "react";
+import { produce } from "immer";
+import { createContext, useReducer, useState } from "react";
 
 export const ProductContext = createContext({} as any);
 type ProductProviderProps = {
@@ -8,26 +10,22 @@ type ProductProviderProps = {
 };
 
 const ProductProvider = ({ children }: ProductProviderProps) => {
-    const [products, setProduct] = useState<any[]>([])
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>("")
+    // const [products, setProduct] = useState<any[]>([])
+    // const [isLoading, setIsLoading] = useState<boolean>(false)
+    // const [error, setError] = useState<string>("")
+    const initialState = {
+        products: [],
+        isLoading: false,
+        error: "",
+    };
 
-    const fetchProducts = async () => {
-        setIsLoading(true);
-        try {
-            await pause(1000)
-            const data = await instance.get('/cars');
-            setProduct(data as any)
-        } catch (error: any) {
-            setError(error.message)
-        } finally{
-            setIsLoading(false)
-        }
-    }
+   
+    const [state, dispatch] = useReducer(produce(productReducer), initialState);
     return (
-        <ProductContext.Provider value={{products, isLoading, error, fetchProducts}} >
+        <ProductContext.Provider value={{state,dispatch}}>
             {children}
         </ProductContext.Provider>
+        
     )
 }
 export default ProductProvider;
