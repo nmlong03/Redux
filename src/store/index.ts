@@ -1,11 +1,25 @@
+import {cartReducer} from '@/reducers/CartReducer';
 import { counterReducer } from '@/reducers/CounterReducer'
 import { productReducer } from '@/reducers/ProductReducer';
-import { legacy_createStore as createStore, combineReducers} from 'redux'
+import { legacy_createStore as createStore, combineReducers, compose, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk';
 
+const composeEnhancers =
+    typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsDenylist, actionsCreators, serialize...
+        })
+        : compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk),
+    // other store enhancers if any
+);
 const rootReducer = combineReducers({
     counter: counterReducer,
-    products: productReducer
+    products: productReducer,
+    cart: cartReducer
 })
-const store = createStore(rootReducer as any)
+const store = createStore(rootReducer as any, enhancer)
 
 export default store;

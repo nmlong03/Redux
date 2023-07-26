@@ -9,6 +9,7 @@ import { pause } from './utils/pause';
 import "./App.css";
 import Counter from './components/Counter';
 import ProductList from './components/ProductList';
+import Cart from './components/Cart';
 
 function App() {
   const carsConfigData = [
@@ -66,8 +67,10 @@ function App() {
         <h2>Table components</h2>
         <Table data={carData} config={carsConfigData} />
       </div> */}
-      <Counter />
+      {/* <Counter /> */}
+      <Cart />
       <ProductList />
+
     </div>
   )
 }

@@ -1,7 +1,22 @@
 {
-    "products": [
-        {"id": 1, "name": "MVC", "price": 100},
-        {"id": 2, "name": "Tokyo", "price": 200},
-        {"id": 3, "name": "BM", "price": 300}
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "MVC",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Tokyo",
+      "price": 200
+    },
+    {
+      "id": 3,
+      "name": "BM",
+      "price": 300
+    }
+  ],
+  "cart": [
+
+  ]
 }
